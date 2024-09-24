@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-step Registration</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <form id="registration-form">
+            <!-- Step 1: Email Input & OTP Generation -->
+            <div id="step-1" class="step active">
+                <h2 class="text-2xl font-semibold mb-4">Step 1: Enter Email</h2>
+                <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="Email" required>
+                <span id="email-error" class="text-red-500 text-sm"></span>
+                <button type="button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-4"
+                    onclick="generateOTP()">Next</button>
+            </div>
+
+            <!-- Step 2: OTP Verification -->
+            <div id="step-2" class="step">
+                <h2 class="text-2xl font-semibold mb-4">Step 2: Enter OTP</h2>
+                <input type="text" id="otp" name="otp" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="OTP" required>
+                <span id="otp-error" class="text-red-500 text-sm"></span>
+                <button type="button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-4"
+                    onclick="verifyOTP()">Next</button>
+                <button type="button" class="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600 mt-2"
+                    onclick="resendOTP()">Resend OTP</button>
+            </div>
+
+            <!-- Step 3: User Registration -->
+            <div id="step-3" class="step">
+                <h2 class="text-2xl font-semibold mb-4">Step 3: Register</h2>
+                <input type="text" id="username" name="username" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="Username" required>
+                <span id="username-error" class="text-red-500 text-sm"></span>
+                <input type="password" id="password" name="password"
+                    class="w-full p-2 border border-gray-300 rounded mt-4" placeholder="Password" required>
+                <span id="password-error" class="text-red-500 text-sm"></span>
+                <input type="password" id="confirm_password" name="confirm_password"
+                    class="w-full p-2 border border-gray-300 rounded mt-4" placeholder="Confirm Password" required>
+                <span id="confirm_password-error" class="text-red-500 text-sm"></span>
+                <button type="button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-2"
+                    onclick="registerUser()">Next</button>
+            </div>
+
+            <!-- Step 4: Event Registration -->
+            <div id="step-4" class="step">
+                <h2 class="text-2xl font-semibold mb-4">Step 4: Event Registration</h2>
+                <input type="text" id="first_name" name="first_name" class="w-full p-2 border border-gray-300 rounded"
+                    placeholder="First Name">
+                <span id="first_name-error" class="text-red-500 text-sm"></span>
+                <input type="text" id="last_name" name="last_name"
+                    class="w-full p-2 border border-gray-300 rounded mt-4" placeholder="Last Name">
+                <span id="last_name-error" class="text-red-500 text-sm"></span>
+                <input type="text" id="phone_number" name="phone_number"
+                    class="w-full p-2 border border-gray-300 rounded mt-4" placeholder="Phone Number">
+                <span id="phone_number-error" class="text-red-500 text-sm"></span>
+                <input type="date" id="event_date" name="event_date"
+                    class="w-full p-2 border border-gray-300 rounded mt-4" required>
+                <span id="event_date-error" class="text-red-500 text-sm"></span>
+                <select id="pricing_plan" name="pricing_plan" class="w-full p-2 border border-gray-300 rounded mt-4"
+                    required>
+                    <option value="Free">Free</option>
+                    <option value="$10">$10</option>
+                    <option value="$20">$20</option>
+                </select>
+                <span id="pricing_plan-error" class="text-red-500 text-sm"></span>
+                <button type="button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mt-2"
+                    onclick="registerEvent()">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
